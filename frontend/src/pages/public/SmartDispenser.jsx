@@ -9,9 +9,8 @@ import {
 import { Button } from '@/components/ui/Button';
 import { useRef } from 'react';
 
-import logoMedicine from '@/assets/logo medicine.png';
-
-import dispenserImg from '@/assets/pill_dispenser_system.png';
+const logoMedicine = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/logo%20medicine.png';
+const dispenserImg = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/pill_dispenser_system.png';
 
 const FadeIn = ({ children, className = '', delay = 0 }) => {
   const ref = useRef(null);

@@ -2,8 +2,9 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Share2, Download, Info } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import demoVideo from '@/assets/demo_video.mp4';
-import logoMedicine from '@/assets/logo medicine.png';
+
+const demoVideo = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/demo_video.mp4';
+const logoMedicine = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/logo%20medicine.png';
 
 export default function DemoPage() {
   return (

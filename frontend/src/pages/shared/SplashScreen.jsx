@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuthStore } from '@/stores/auth.store';
-import logoMedicine from '@/assets/logo medicine.png';
+
+const logoMedicine = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/logo%20medicine.png';
 
 export default function SplashScreen() {
   const navigate = useNavigate();

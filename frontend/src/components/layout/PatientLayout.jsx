@@ -26,8 +26,9 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuthStore } from '@/stores/auth.store';
-import logoMedicine from '@/assets/logo medicine.png';
 import { ChatToastProvider } from '@/components/ui/ChatToast';
+
+const logoMedicine = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/logo%20medicine.png';
 
 const NavLink = ({ to, icon: Icon, label, active, onClick }) => (
   <Link 

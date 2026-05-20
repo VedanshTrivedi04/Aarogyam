@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { useAuthStore } from '@/stores/auth.store';
 import { authAgent } from '@/agents/auth.agent';
-import logoMedicine from '@/assets/logo medicine.png';
+
+const logoMedicine = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/logo%20medicine.png';
 
 const RoleCard = ({ icon: Icon, title, selected, onClick }) => (
   <button

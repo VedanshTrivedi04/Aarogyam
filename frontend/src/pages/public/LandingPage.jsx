@@ -10,9 +10,10 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import LogoLoop from '@/components/ui/LogoLoop';
-import heroImage from '@/assets/final_hero.png';
-import logoMedicine from '@/assets/logo medicine.png';
 import { useAuthStore } from '@/stores/auth.store';
+
+const heroImage = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/final_hero.png';
+const logoMedicine = 'https://cdn.jsdelivr.net/gh/rajvardhansinghchawda/aarogyam-assets/assets/logo%20medicine.png';
 import PillNav from '@/components/ui/PillNav';
 import {
   SiApple, SiSamsung, SiGoogle,
