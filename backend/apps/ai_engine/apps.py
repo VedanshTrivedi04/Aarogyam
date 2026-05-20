@@ -14,6 +14,13 @@ class AIEngineConfig(AppConfig):
         - Does NOT fail startup if model file is missing
         """
         try:
+            import os
+            if os.environ.get('SKIP_AI_WARMUP', 'False').lower() == 'true':
+                import logging
+                logger = logging.getLogger("medadhere.ai_engine")
+                logger.info("AI Engine warmup skipped via SKIP_AI_WARMUP env var (model will load lazily on first prediction).")
+                return
+
             from apps.ai_engine.services.inference import InferenceService
             InferenceService.warmup()
         except Exception as e:

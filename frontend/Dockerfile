@@ -1,18 +1,28 @@
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+
+# Build-time public env vars for Vite
+ARG VITE_API_URL
+ARG VITE_GOOGLE_CLIENT_ID
+ENV VITE_API_URL=${VITE_API_URL}
+ENV VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}
+
+RUN npm run build
+
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files
-COPY package.json package-lock.json ./
+RUN npm install -g serve
 
-# Install dependencies
-RUN npm install
+COPY --from=build /app/dist ./dist
 
-# Copy all frontend files
-COPY . .
+EXPOSE 7860
 
-# Expose port
-EXPOSE 5173
-
-# Start the dev server
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+CMD ["serve", "-s", "dist", "-l", "7860"]

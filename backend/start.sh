@@ -16,14 +16,10 @@ fi
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-# 3. Start Celery Worker in background
-echo "Starting Celery worker..."
-celery -A config worker -l info > /tmp/celery-worker.log 2>&1 &
+# Celery is configured in CELERY_TASK_ALWAYS_EAGER mode in production settings,
+# which runs Celery tasks synchronously inside the Daphne web server.
+# This prevents the container from running out of RAM (saves 250MB+).
 
-# 4. Start Celery Beat in background
-echo "Starting Celery beat..."
-celery -A config beat -l info > /tmp/celery-beat.log 2>&1 &
-
-# 5. Start Daphne Web Server (foreground, listening to the port Render gives us)
-echo "Starting Daphne ASGI server on port $PORT..."
-exec daphne -b 0.0.0.0 -p "$PORT" config.asgi:application
+# 3. Start Uvicorn ASGI Server (single worker, foreground)
+echo "Starting Uvicorn ASGI server on port $PORT..."
+exec uvicorn config.asgi:application --host 0.0.0.0 --port "$PORT" --workers 1 --log-level info

@@ -35,3 +35,6 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+# Run Celery tasks synchronously in production to avoid starting celery worker process (saves 200MB RAM)
+CELERY_TASK_ALWAYS_EAGER = True
