@@ -4,9 +4,22 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.celery import CeleryIntegration
 
 DEBUG = False
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
+def _split_env_list(name, default=''):
+    raw = os.environ.get(name, default)
+    return [item.strip() for item in raw.split(',') if item.strip()]
+
+ALLOWED_HOSTS = _split_env_list(
+    'ALLOWED_HOSTS',
+    'localhost,127.0.0.1,proxy.spaces.internal.huggingface.tech,.hf.space,.huggingface.tech',
+)
+
+CORS_ALLOWED_ORIGINS = _split_env_list('CORS_ALLOWED_ORIGINS')
+
+CSRF_TRUSTED_ORIGINS = _split_env_list(
+    'CSRF_TRUSTED_ORIGINS',
+    'https://*.hf.space,https://*.huggingface.tech',
+)
 
 # HTTPS settings
 SECURE_SSL_REDIRECT             = True
